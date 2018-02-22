@@ -1,4 +1,4 @@
-# Project Title
+# Home Assistant 2018 - Valter Ferreira
 
 One Paragraph of project description goes here
 
@@ -72,7 +72,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Valter Ferreira** - *Initial work* - [PurpleBooth](https://github.com/nightsource)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
