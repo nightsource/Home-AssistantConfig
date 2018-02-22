@@ -1,0 +1,85 @@
+#################################################################
+## Groups
+#################################################################
+#VISTAS
+  default_view:
+    view: yes
+    icon: mdi:home
+    entities:
+      - group.daily_forecast
+      - group.Sun
+      - group.dispositivos
+
+
+  divisao:
+    name: Divisao
+    view: yes
+    icon: mdi:home-modern
+    entities:
+      - group.sala
+
+  mediaCenter:
+    name: MediaCenter
+    view: yes
+    icon: mdi:play-protected-content
+    entities:
+      - group.media
+      
+  boxs:
+    name: Boxs Vodafone
+    entities:
+      - sensor.boxsvodafone
+      - input_select.zona_da_box
+      - input_select.canal
+      - script.aumentarvolumeboxsala
+      - script.diminuirvolumeboxsala
+      - script.reproducaobox
+      
+  sistema:
+    name: sistema
+    view: yes
+    icon: mdi:settings
+    entities:
+      - group.sisHealth
+#groups
+  sala:
+    name: Sala
+    entities:
+      - media_player.samsung_tv_remote
+      - group.boxs
+      - switch.geral_sala
+
+  media:
+    name: Media
+    entities:
+      - media_player.samsung_tv_remote
+      - group.boxs
+      - media_player.spotify
+
+  daily_forecast:
+    name: Daily Forecast
+    entities:
+      - sensor.pws_weather_1d_metric
+      - sensor.pws_weather_2d_metric
+      - sensor.pws_weather_3d_metric
+      - sensor.pws_weather_4d_metric
+  Sun:
+    name: Sol
+    entities:
+      - sun.sun
+
+  dispositivos:
+    name: Dispositivos
+    entities:
+      - device_tracker.oneplus_3
+      - device_tracker.android6b624d787f17d7a5
+
+  sisHealth:
+    name: Sistema
+    entities:
+      - sensor.time__date
+      - sensor.ram_available
+      - sensor.speedtest_ping
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
+      - sensor.last_boot
