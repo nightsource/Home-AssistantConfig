@@ -24,7 +24,13 @@
     icon: mdi:play-protected-content
     entities:
       - group.media
-      
+  sistema:
+    name: sistema
+    view: yes
+    icon: mdi:settings
+    entities:
+      - group.sisHealth
+#groups
   boxs:
     name: Boxs Vodafone
     entities:
@@ -34,18 +40,11 @@
       - script.aumentarvolumeboxsala
       - script.diminuirvolumeboxsala
       - script.reproducaobox
-      
-  sistema:
-    name: sistema
-    view: yes
-    icon: mdi:settings
-    entities:
-      - group.sisHealth
-#groups
   sala:
     name: Sala
     entities:
       - media_player.samsung_tv_remote
+      - media_player.vodafone_stb
       - group.boxs
       - switch.geral_sala
 
@@ -53,6 +52,7 @@
     name: Media
     entities:
       - media_player.samsung_tv_remote
+      - media_player.vodafone_stb
       - group.boxs
       - media_player.spotify
 
