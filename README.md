@@ -17,7 +17,7 @@ All of my work with my configuration of Home Assistant in a Hassbian enviroment
 
 ## Authors
 
-* **Valter Ferreira** - *Initial work* - [NightSource](https://github.com/nightsource)
+* **Valter Ferreira** - *Initial work* - [NightSource](http://github.com/nightsource)
 
 ## Acknowledgments
 
