@@ -589,6 +589,13 @@ media_player:
 #        abc123def456: 'Living Room'
 #        9183abas000: 'Bed Room'
 
+weblink:
+  entities:
+    - name: Router
+      url: http://192.168.1.1/
+    - name: Home Assistant
+      url: https://home-assistant.io
+
 device_tracker:
   - platform: huawei_router
     host: 192.168.1.1
