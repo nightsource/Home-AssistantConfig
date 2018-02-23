@@ -23,7 +23,8 @@ All of my work with my configuration of Home Assistant in a Hassbian enviroment
 
 * Hat tip to alot of people i was inspired of.
 * Movimento Maker Portugal
-* Bruno horta
+* @github/brunohorta82
+* Several others
 
 ## Help Section & Links
 [Help writing README.md](https://help.github.com/articles/basic-writing-and-formatting-syntax/)
