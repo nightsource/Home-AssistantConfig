@@ -7,10 +7,12 @@ All of my work with my configuration of Home Assistant in a Hassbian enviroment
 - [x] People Home/away
 - [x] Tv information
 - [x] Vodafone STB control
-- [] System information and network stats
-- [] BHonoffre testing and aplication
-- [] garage doors control
-- [] smart doorbell
+- [ ] System information and network stats
+- [ ] BHonoffre testing and aplication
+- [ ] garage doors control
+- [ ] smart doorbell
+- [ ] Control of fishtank (Temp,Light,pump)
+- [ ] Room Control (Light,Temp)
 
 
 ## Authors
