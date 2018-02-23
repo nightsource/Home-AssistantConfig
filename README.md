@@ -23,7 +23,7 @@ All of my work with my configuration of Home Assistant in a Hassbian enviroment
 
 * Hat tip to alot of people i was inspired of.
 * Movimento Maker Portugal
-* @github/brunohorta82
+* @brunohorta82 (Check him out, lots of awesome stuff)
 * Several others
 
 ## Help Section & Links
