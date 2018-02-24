@@ -9,6 +9,7 @@
       - group.daily_forecast
       - group.Sun
       - group.dispositivos
+      - group.links
 
 
   divisao:
@@ -40,13 +41,19 @@
       - script.aumentarvolumeboxsala
       - script.diminuirvolumeboxsala
       - script.reproducaobox
+  links:
+    name: Links
+    entities:
+      - weblink.home_assistant
+      - weblink.router
+
   sala:
     name: Sala
     entities:
       - media_player.samsung_tv_remote
       - media_player.vodafone_stb
       - group.boxs
-      - switch.geral_sala
+      - switch.maker_switch
 
   media:
     name: Media

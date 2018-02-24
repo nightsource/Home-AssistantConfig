@@ -39,8 +39,6 @@ http:
 updater:
   # Optional, allows Home Assistant developers to focus on popular components.
   # include_used_components: true
-#Hass.io configuration
-#hassio:
 
 # Discover some devices automatically
 discovery:
@@ -64,6 +62,24 @@ map:
 
 # Track the sun
 sun:
+
+#mosquitto broker
+mqtt:
+  broker: 192.168.1.142
+  port: 1883
+  username: !secret mqttusr
+  password: !secret mqttpss
+
+switch:
+  - platform: mqtt
+    name: "Maker Switch"
+    state_topic: "casa/sala/luz/state"
+    command_topic: "casa/sala/luz/set"
+    payload_on: "ON"
+    payload_off: "OFF"
+    optimistic: false
+    qos: 0
+    retain: true
 
 # Weather prediction
 sensor:
