@@ -1,0 +1,4 @@
+  - platform: huawei_router
+    host: 192.168.1.1
+    username: !secret routerVDFusr
+    password: !secret routerVDFpss
