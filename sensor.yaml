@@ -1,0 +1,16 @@
+!include sensorSTB.yaml
+  - platform: time_date
+    display_options:
+      - 'time_date'
+  - platform: wunderground
+    lang: BR
+    api_key: !secret wuApiKey
+    monitored_conditions:
+      - weather_1d_metric
+      - weather_1n_metric
+      - weather_2d_metric
+      - weather_2n_metric
+      - weather_3d_metric
+      - weather_3n_metric
+      - weather_4d_metric
+      - weather_4n_metric
