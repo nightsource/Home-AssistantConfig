@@ -1,0 +1,225 @@
+  canal:  
+    name: 'Escolhe o Canal'
+    options:
+      - RTP 1
+      - RTP 2
+      - SIC
+      - TVI
+      - SIC N
+      - RTP 3
+      - TVI 24
+      - CMTV
+      - SPTV+
+      - GLOBO
+      - SIC M
+      - PROMO
+      - PORTOC HD
+      - SIC CARAS
+      - SIC R
+      - CINEMA PORTUGUES
+      - RTPMEM
+      - 24K HD
+      - CANAL Q HD
+      - SPTV 1
+      - SPTV 3
+      - SPTV+ HD
+      - SPORT TV 4K
+      - BTV 1
+      - SCP TV
+      - SCP TV HD
+      - EURSP
+      - EURSP HD
+      - EURSP 2
+      - MOTORS HD
+      - PFC
+      - FUELTV HD
+      - DISNEY
+      - DISNEY J
+      - DMOD
+      - CN PT
+      - PANDA
+      - PANDA B
+      - BABY TV
+      - SIC K
+      - JIMJAM
+      - CINEKIDS
+      - MINIMOTION
+      - PLAYTIME
+      - TRAILERS
+      - TVC 1
+      - TVC S
+      - HOLLYW HD
+      - HOLLYW
+      - CINEMUNDO HD
+      - CINEMUNDO SD
+      - FOX M HD
+      - FOX M
+      - FOX HD 
+      - FOX
+      - AXN HD
+      - AXN
+      - FOXL HD
+      - FOXLIF
+      - FOX C HD
+      - FOXCRI
+      - FOX +
+      - FOX COMEDY HD
+      - FOX COMEDY SD 
+      - AXN W HD
+      - AXN W
+      - AXN B HD
+      - AXN BLK
+      - SYFY SD
+      - AMC HD
+      - AMC SD
+      - AMC HD
+      - NETFLIX
+      - OSCARES
+      - INDIEWORLD
+      - SUPER8
+      - PLAYMOTION
+      - CASA DO TERROR
+      - MTV P HD
+      - MTV PT
+      - VH1
+      - BRAVA TV
+      - DJAZZ
+      - MCM TOP HD
+      - MCMTOP
+      - CMUSIC
+      - AFRO M
+      - TRACE HD
+      - TRACE
+      - TRACE TOCA
+      - DISC HD
+      - DISCOV
+      - NGC HD
+      - NGC
+      - NGW HD
+      - NGCWIL
+      - HISTOR
+      - ODISSE
+      - ODISSEIA HD
+      - DOCUBOX HD
+      - AE
+      - TLC
+      - E! HD
+      - E!
+      - TRAVEL HD
+      - TRAVEL
+      - FASHION TV HD
+      - FASH TV
+      - TFN HD
+      - TFN
+      - 24 K
+      - BBC ENTERT
+      - CANAL Q
+      - INSIGHT TV HD
+      - GINX
+      - QYOU HD
+      - QYOU SD
+      - GLOBO P
+      - TV REC HD
+      - TV REC
+      - EURONEWS EN
+      - EURONW
+      - BLOOMB
+      - SKY NEWS
+      - BBC WD
+      - CNBC E
+      - ALJAZE
+      - TVE 24
+      - DW
+      - FRA24 E
+      - FRA24 F
+      - REC NEWS
+      - CMTV HD
+      - 180
+      - ANGELUS TV
+      - RTPMAD
+      - RTPACOR
+      - PORTOC
+      - CNOVA
+      - AR TV
+      - LOCAL HD
+      - LOCAL V
+      - RTP AF
+      - TPA
+      - TVC NEWS
+      - TVC INT
+      - TVGALICIA
+      - RTP HD
+      - TVEI
+      - TV5MON
+      - RAI1
+      - PROTV
+      - RUSSIA
+      - RT DOC
+      - CUBAVI
+      - NHK WORLD
+      - KURIAKOS TV
+      - TOUROS
+      - CAC & PESCA
+      - CACVISION
+      - MOTORS
+      - FIGHTBOX
+      - FASTNFUN BOX
+      - FIGHT NETWORK HD
+      - FUEL TV
+      - DOG TV
+      - OH YES
+      - PLAYBOY
+      - HUSTL
+      - HOT
+      - PENT
+      - HOT MAN
+      - HOT TABOO
+      - START APPS
+      - SIC HD
+      - SICN HD
+      - GLOBO HD
+      - SIC M HD
+      - SIC C HD
+      - SIC R HD
+      - YUBUY.LJ
+      - YUBUY.TV
+      - VIDEO
+      - GRAV
+      - STINGRAY KARAOKE
+      - KARAOKE
+      - ARCADE
+      - 420
+      - + CANAIS
+      - STINGRAY MUSIC
+      - RADIO
+      - VODAFONE FM
+      - COMERCIAL
+      - M80
+      - RFM
+      - RR
+      - SIM
+      - ANTENA 1
+      - ANTENA 2
+      - ANTENA 3
+      - RECORD FM
+      - RDP AFRICA
+      - TSF
+      - CIDADE FM
+      - MEGA FM
+      - RADIO REGIONAL
+      - HIPER FM
+      - GOLO FM
+      - SMOOTH FM
+      - RADIO SINES
+      - MUNDIAL FM
+      - RTP1 H
+      - RTP2 H
+      - SIC H
+      - TVI H
+
+  zona_da_box:
+    name: 'Escolhe a Box:'
+    options:
+      - Sala
+#      - Quarto
+    icon: mdi:speaker-wireless
