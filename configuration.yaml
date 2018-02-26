@@ -13,9 +13,6 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
 
-# Show links to resources in log and frontend
-#introduction:
-
 # Enables the frontend
 frontend:
 
@@ -24,21 +21,9 @@ config:
 
 http:
   api_password: !secret http_password
-#  ssl_certificate: /data/letsencrypt/live/inforsource.ddns.net/fullchain.pem
-#  ssl_key: /data/letsencrypt/live/inforsource.ddns.net/privkey.pem
-  # Secrets are defined in the file secrets.yaml
-  # api_password: !secret http_password
-  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  # base_url: example.duckdns.org:8123
 
 # Checks for available updates
-# Note: This component will send some information about your system to
-# the developers to assist with development of Home Assistant.
-# For more information, please see:
-# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
 updater:
-  # Optional, allows Home Assistant developers to focus on popular components.
-  # include_used_components: true
 
 # Discover some devices automatically
 discovery:
@@ -54,11 +39,6 @@ logbook:
 
 # Enables a map showing the location of tracked devices
 map:
-
-#no_ip:
-#  domain: inforsource.ddns.net
-#  username: !secret noipUsr
-#  password: !secret noipPss
 
 # Track the sun
 sun:
@@ -601,9 +581,6 @@ media_player:
   - platform: spotify
     client_id: !secret spotifyClientId
     client_secret: !secret spotifyClientSecret
-#    aliases:
-#        abc123def456: 'Living Room'
-#        9183abas000: 'Bed Room'
 
 weblink:
   entities:
@@ -842,5 +819,4 @@ input_select:
     name: 'Escolhe a Box:'
     options:
       - Sala
-#      - Quarto
     icon: mdi:speaker-wireless
