@@ -55,11 +55,6 @@ logbook:
 # Enables a map showing the location of tracked devices
 map:
 
-#no_ip:
-#  domain: inforsource.ddns.net
-#  username: !secret noipUsr
-#  password: !secret noipPss
-
 # Track the sun
 sun:
 
@@ -70,10 +65,9 @@ mqtt:
   username: !secret mqttusr
   password: !secret mqttpss
 
-switch: !include switch.yaml
 
-# Weather prediction
-sensor: !include sensor.yaml
+
+
 
 # Text to speech
 tts:
@@ -85,18 +79,15 @@ cloud:
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
+
 media_player: !include mediaplayer.yaml
-#    aliases:
-#        abc123def456: 'Living Room'
-#        9183abas000: 'Bed Room'
 device_tracker: !include devTracker.yaml
+weblink: !include weblink.yaml
+input_select: !include input.yaml
+sensor: !include sensor.yaml
+switch: !include switch.yaml
 
 notify:
   - name: notify_pushBullet
     platform: pushbullet
     api_key: o.5uPUrE5NxJ1F764WUKK0pLhuo8ImYnAN
-
-
-weblink: !include weblink.yaml
-  
-input_select: !include input.yaml
