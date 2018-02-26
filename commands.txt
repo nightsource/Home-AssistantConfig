@@ -1,0 +1,42 @@
+###Location of HA on Hassbian
+HA on Hassbian is installed in a Venv at /srv/homeassistant.
+Configuration is located at /home/homeassistant/.homeassistant
+
+###To update Ha on Hassbian
+Log in as the pi account
+
+sudo systemctl stop home-assistant@homeassistant.service	
+sudo su -s /bin/bash homeassistant
+source /srv/homeassistant/bin/activate
+pip3 install --upgrade homeassistant
+sudo systemctl start home-assistant@homeassistant.service	
+###This will in order do the following:
+##Stop the Home Assistant service running on HASSbian
+##Open a shell as the homeassistant user running the Homeassistant service and that has ownership over the Home Assistant installation.
+##Change into the virtual Python environment at /srv/homeassistant/ containing the Home Assistant installation.
+##Upgrade the Home Assistant installation to the latest release.
+##Exit the shell and return to the pi user.
+##Restart the Home Assistant service.
+
+###To start/stop/restart Ha on Hassbian
+Log in as the pi account
+
+sudo systemctl stop home-assistant@homeassistant.service	
+Replace stop with start/restart to get the required functionality.
+
+###Check your configuration on Hassbian
+Log in as the pi account
+
+sudo su -s /bin/bash homeassistant
+source /srv/homeassistant/bin/activate
+hass --script check_config
+
+READ THE HOME ASSISTANT LOG FILE
+Log in as the pi account and execute the following commands:
+
+$ sudo su -s /bin/bash homeassistant
+$ cd /home/homeassistant/.homeassistant
+$ nano home-assistant.log
+
+https://pplware.sapo.pt/linux/tutorial-raspberry-pi-configuracao-do-teclado/
+https://www.youtube.com/watch?v=HpkmsaBi7BE
