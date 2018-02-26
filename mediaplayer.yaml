@@ -1,0 +1,9 @@
+  - platform: mediaroom
+    host: 192.168.1.65
+    name: "vodafone STB"
+    optimistic: True
+  - platform: samsungtv
+    host: 192.168.1.70
+  - platform: spotify
+    client_id: !secret spotifyClientId
+    client_secret: !secret spotifyClientSecret
