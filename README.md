@@ -6,8 +6,8 @@ All of my work with my configuration of Home Assistant in a Hassbian enviroment
 - [x] Weather Forecast
 - [x] People Home/away
 - [x] Tv information
-- [x] Vodafone STB control
-- [ ] System information and network stats
+- [ ] Vodafone STB control
+- [x] System information and network stats
 - [ ] BHonoffre testing and aplication
 - [ ] garage doors control
 - [ ] smart doorbell
