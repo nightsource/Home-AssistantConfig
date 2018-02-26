@@ -129,25 +129,16 @@ cloud:
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
+media_player: !include mediaplayer.yaml
+#    aliases:
+#        abc123def456: 'Living Room'
+#        9183abas000: 'Bed Room'
 
 notify:
   - name: notify_pushBullet
     platform: pushbullet
     api_key: o.5uPUrE5NxJ1F764WUKK0pLhuo8ImYnAN
 
-media_player:
-  - platform: mediaroom
-    host: 192.168.1.65
-    name: "vodafone STB"
-    optimistic: True
-  - platform: samsungtv
-    host: 192.168.1.70
-  - platform: spotify
-    client_id: !secret spotifyClientId
-    client_secret: !secret spotifyClientSecret
-#    aliases:
-#        abc123def456: 'Living Room'
-#        9183abas000: 'Bed Room'
 
 weblink:
   entities:
