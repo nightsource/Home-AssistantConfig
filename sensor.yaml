@@ -1,7 +1,9 @@
 !include sensorSTB.yaml
+#Time/Date Checker
   - platform: time_date
     display_options:
       - 'time_date'
+#Weather monitor
   - platform: wunderground
     lang: BR
     api_key: !secret wuApiKey
@@ -14,3 +16,22 @@
       - weather_3n_metric
       - weather_4d_metric
       - weather_4n_metric
+#System monitor
+  - platform: cpuspeed
+  - platform: speedtest
+    minute: 30
+    hour:
+      - 0
+      - 6
+      - 12
+      - 18
+    monitored_conditions:
+      - ping
+      - download
+      - upload
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /home
+      - type: memory_free
+      - type: last_boot
