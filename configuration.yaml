@@ -1,587 +1,31 @@
-homeassistant:
-  # Name of the location where Home Assistant is running
-  name: Casa_ValterRita
-  # Location required to calculate the time the sun rises and sets
-  latitude: !secret home_lat
-  longitude: !secret home_long
-  # Impacts weather/sunrise data (altitude above sea level in meters)
-  elevation: 168
-  # metric for Metric, imperial for Imperial
-  unit_system: metric
-  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  time_zone: Europe/Lisbon
-  # Customization file
-  customize: !include customize.yaml
 
-# Enables the frontend
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
 frontend:
-
-# Enables configuration UI
-config:
-
+  themes: !include themes.yaml
+  extra_html_url:
+    - /local/custom_ui/state-card-floorplan.html
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
 http:
-  api_password: !secret http_password
-
-# Checks for available updates
-updater:
-
-# Discover some devices automatically
-discovery:
-
-# Allows you to issue voice commands from the frontend in enabled browsers
-conversation:
-
-# Enables support for tracking state changes over time
-history:
-
-# View all events in a logbook
-logbook:
-
-# Enables a map showing the location of tracked devices
-map:
-
-# Track the sun
-sun:
-
-#mosquitto broker
-mqtt:
-  broker: 192.168.1.142
-  port: 1883
-  username: !secret mqttusr
-  password: !secret mqttpss
-
-switch:
-  - platform: mqtt
-    name: "Maker Switch"
-    state_topic: "casa/sala/luz/state"
-    command_topic: "casa/sala/luz/set"
-    payload_on: "ON"
-    payload_off: "OFF"
-    optimistic: false
-    qos: 0
-    retain: true
-
-# Weather prediction
-sensor:
-  - platform: template
-    sensors:
-      boxsvodafone:  
-        friendly_name: 'Estás a ver:'
-        value_template: >    
-          {%- if is_state('input_select.canal', 'RTP1') -%}
-            RTP1    
-          {%- elif is_state('input_select.canal', 'RTP2') -%}
-            RTP2    
-          {%- elif is_state('input_select.canal', 'SIC') -%}   
-            SIC
-          {%- elif is_state('input_select.canal', 'TVI') -%}  
-            TVI
-          {%- elif is_state('input_select.canal', 'SIC N') -%}  
-            SIC NOTICIAS
-          {%- elif is_state('input_select.canal', 'RTP 3') -%}  
-            RTP 3
-          {%- elif is_state('input_select.canal', 'TVI 24') -%}
-            TVI 24
-          {%- elif is_state('input_select.canal', 'CMTV') -%}                 
-            CMTV   
-          {%- elif is_state('input_select.canal', 'SPTV+') -%}
-            SPORT TV +  
-          {%- elif is_state('input_select.canal', 'GLOBO') -%}   
-            GLOBO
-           {%- elif is_state('input_select.canal', 'SIC M') -%}   
-            SIC MULHER 
-          {%- elif is_state('input_select.canal', 'PROMO') -%}
-            PROMO 
-          {%- elif is_state('input_select.canal', 'PORTOC HD1') -%} 
-             PORTO CANAL HD
-          {%- elif is_state('input_select.canal', 'SIC CARAS') -%} 
-             SIC CARAS             
-          {%- elif is_state('input_select.canal', 'SIC R') -%} 
-             SIC RADICAL
-          {%- elif is_state('input_select.canal', 'CINEMA PORTUGUES') -%} 
-             CINEMA PORTUGUES
-          {%- elif is_state('input_select.canal', 'RTPMEM') -%} 
-             RTP MEMORIA
-          {%- elif is_state('input_select.canal', '24K HD') -%}
-             KITCHEN 24
-          {%- elif is_state('input_select.canal', 'CANAL Q HD') -%}  
-             CANAL Q HD
-          {%- elif is_state('input_select.canal', 'SPTV 1') -%}     
-            SPORT TV 1 
-          {%- elif is_state('input_select.canal', 'SPTV 3') -%}     
-             SPORT TV 3 
-          {%- elif is_state('input_select.canal', 'SPTV+ HD') -%}     
-             SPORT TV + HD
-           {%- elif is_state('input_select.canal', 'SPORT TV 4K') -%}     
-             SPORT TV 4K
-              {%- elif is_state('input_select.canal', 'BTV 1') -%}     
-              BENFICA TV1
-                 {%- elif is_state('input_select.canal', 'SCP TV') -%}     
-              SPORTING TV
-             {%- elif is_state('input_select.canal', 'SCP TV HD') -%}     
-               SPORTING TV HD
-               {%- elif is_state('input_select.canal', 'EURSP') -%}     
-                EUROSPORT
-              {%- elif is_state('input_select.canal', 'EURSP HD') -%}     
-                EUROSPORT HD
-               {%- elif is_state('input_select.canal', 'EURSP 2') -%}     
-                EUROSPORT 2
-                   {%- elif is_state('input_select.canal', 'MOTORS HD') -%}     
-                MOTORS HD
-              {%- elif is_state('input_select.canal', 'PFC') -%}
-                 PFC
-              {%- elif is_state('input_select.canal', 'FUELTV HD') -%}     
-                FUELTV HD
-                {%- elif is_state('input_select.canal', 'DISNEY') -%}     
-                 DISNEY
-            {%- elif is_state('input_select.canal', 'DISNEY J') -%}     
-                 DISNEY JUNIOR
-             {%- elif is_state('input_select.canal', 'DMOD') -%}
-                DMOD
-          {%- elif is_state('input_select.canal', 'CN PT') -%}
-                 CARTOON NETWORK
-          {%- elif is_state('input_select.canal', 'PANDA') -%}
-                PANDA
-          {%- elif is_state('input_select.canal', 'PANDA B') -%}
-                 PANDA BIGGS
-          {%- elif is_state('input_select.canal', 'BABY TV') -%}
-               BABY TV
-          {%- elif is_state('input_select.canal', 'SIC K') -%}
-                 SIC K
-          {%- elif is_state('input_select.canal', 'JIMJAM') -%}
-                 JIMJAM
-          {%- elif is_state('input_select.canal', 'CINEKIDS') -%}
-               CINEKIDS
-          {%- elif is_state('input_select.canal', 'MINIMOTION') -%}
-                MINIMOTION
-          {%- elif is_state('input_select.canal', 'PLAYTIME') -%}
-                 PLAYTIME		
-          {%- elif is_state('input_select.canal', 'TRAILERS') -%}
-                 TRAILERS
-                {%- elif is_state('input_select.canal', 'TVC 1') -%}
-                 TVCINE 1
-                {%- elif is_state('input_select.canal', 'TVC S') -%}
-                 TVCINE S
-                {%- elif is_state('input_select.canal', 'HOLLYW HD') -%}
-                 HOLLYWOOD HD
-                {%- elif is_state('input_select.canal', 'HOLLYW') -%}
-                 HOLLYWOOD
-                {%- elif is_state('input_select.canal', 'CINEMUNDO HD') -%}
-                 CINEMUNDO HD
-                {%- elif is_state('input_select.canal', 'CINEMUNDO SD') -%}
-                 CINEMUNDO SD
-                    {%- elif is_state('input_select.canal', 'FOX M HD') -%}
-                FOX M HD
-                {%- elif is_state('input_select.canal', 'FOX M') -%}
-                FOX M
-                    {%- elif is_state('input_select.canal', 'FOX HD') -%}
-                FOX HD
-                {%- elif is_state('input_select.canal', 'FOX') -%}
-                FOX
-                {%- elif is_state('input_select.canal', 'AXN HD') -%}
-                AXN HD
-                    {%- elif is_state('input_select.canal', 'AXN') -%}
-                 AXN
-                    {%- elif is_state('input_select.canal', 'FOXL HD') -%}
-                FOXLIFE HD
-                    {%- elif is_state('input_select.canal', 'FOXLIF') -%}
-                FOXLIFE
-                    {%- elif is_state('input_select.canal', 'FOX C HD') -%}
-                FOX CRIME HD
-             {%- elif is_state('input_select.canal', 'FOXCRI') -%}
-                FOX CRIME
-              {%- elif is_state('input_select.canal', 'FOX +') -%}
-                    FOX +
-                        {%- elif is_state('input_select.canal', 'FOX COMEDY HD') -%}
-                 FOX COMEDY HD
-                    {%- elif is_state('input_select.canal', 'FOX COMEDY SD') -%}
-                 FOX COMEDY SD
-                    {%- elif is_state('input_select.canal', 'AXN W HD') -%}
-                 AXN WHITE HD
-                    {%- elif is_state('input_select.canal', 'AXN W') -%}
-                AXN WHITE
-                    {%- elif is_state('input_select.canal', 'AXN B HD') -%}
-                 AXN BLACK HD
-                    {%- elif is_state('input_select.canal', 'FOX BLK') -%}
-                 AXN BLACK
-                    {%- elif is_state('input_select.canal', 'SYFY HD') -%}
-                  SYFY HD
-                    {%- elif is_state('input_select.canal', 'AMC HD') -%}
-                AMC HD
-                    {%- elif is_state('input_select.canal', 'AMC SD') -%}
-                 AMC SD
-                {%- elif is_state('input_select.canal', 'NETFLIX') -%}
-                NETFLIX
-          {%- elif is_state('input_select.canal', 'OSCARES') -%}
-                 OSCARES
-          {%- elif is_state('input_select.canal', 'INDIEWORLD') -%}
-                 INDIEWORLD
-          {%- elif is_state('input_select.canal', 'SUPER8') -%}
-                SUPER8
-          {%- elif is_state('input_select.canal', 'PLAYMOTION') -%}
-                 PLAYMOTION
-          {%- elif is_state('input_select.canal', 'CASA DO TERROR') -%}
-                 CASA DO TERROR
-          {%- elif is_state('input_select.canal', 'MTV P HD') -%}
-                 MTV PORTUGAL HD
-          {%- elif is_state('input_select.canal', 'MTV PT') -%}
-                 MTV PORTUGAL
-          {%- elif is_state('input_select.canal', 'VH1') -%}
-                 VH1
-          {%- elif is_state('input_select.canal', 'BRAVA') -%}
-                 BRAVA
-          {%- elif is_state('input_select.canal', 'DJAZZ') -%}
-                 DJAZZ
-                        {%- elif is_state('input_select.canal', 'MCM') -%}
-                 MCM
-                    {%- elif is_state('input_select.canal', 'MCMTOP') -%}
-                 MCM TOP
-                    {%- elif is_state('input_select.canal', 'CMUSIC') -%}
-                 CMUSIC
-                    {%- elif is_state('input_select.canal', 'AFRO') -%}
-                 AFRO MUSIC
-                    {%- elif is_state('input_select.canal', 'TRACE HD') -%}
-                 TRACE HD
-                    {%- elif is_state('input_select.canal', 'TRACE') -%}
-                 TRACE
-                    {%- elif is_state('input_select.canal', 'TRACE TOCA') -%}
-                 TRACE TOCA
-                    {%- elif is_state('input_select.canal', 'DISC HD') -%}
-                DISCOVERY HD
-                    {%- elif is_state('input_select.canal', 'DISCOV') -%}
-                 DISCOVERY
-                    {%- elif is_state('input_select.canal', 'NGC HD') -%}
-                 NATIONAL GEOGRAPHIC HD
-                    {%- elif is_state('input_select.canal', 'NGC') -%}
-                 NATIONAL GEOGRAPHIC
-                    {%- elif is_state('input_select.canal', 'NGW HD') -%}
-                 NATIONAL GEOGRAPHIC WILD HD
-                    {%- elif is_state('input_select.canal', 'NGCWIL') -%}
-                 NATIONAL GEOGRAPHIC WILD
-                    {%- elif is_state('input_select.canal', 'HISTOR') -%}
-                 HISTORIA
-                    {%- elif is_state('input_select.canal', 'ODISSE') -%}
-                 ODISSEIA HD
-                    {%- elif is_state('input_select.canal', 'ODISSEIA') -%}
-                 ODISSEIA
-                    {%- elif is_state('input_select.canal', 'DOCUBOX') -%}
-                 DOCUBOX
-                    {%- elif is_state('input_select.canal', 'AE') -%}
-                 AE
-                    {%- elif is_state('input_select.canal', 'TLC') -%}
-                 TLC
-                {%- elif is_state('input_select.canal', 'NGW HD') -%}
-                 NGW HD
-                    {%- elif is_state('input_select.canal', 'NGCWIL') -%}
-                 NGCWIL
-                {%- elif is_state('input_select.canal', 'HISTOR') -%}
-                HISTOR
-                    {%- elif is_state('input_select.canal', 'ODISSE') -%}
-                 ODISSE
-                {%- elif is_state('input_select.canal', 'ODISSEIA') -%}
-                 ODISSEIAA
-                {%- elif is_state('input_select.canal', 'DOCUBOX') -%}
-                 DOCUBOXX
-                    %- elif is_state('input_select.canal', 'AE') -%}
-                 AE
-                    {%- elif is_state('input_select.canal', 'TLC') -%}
-                      TLC
-                    {%- elif is_state('input_select.canal', 'E! HD') -%}
-                 E! HD
-                        {%- elif is_state('input_select.canal', 'E!') -%}
-                 E!
-                    {%- elif is_state('input_select.canal', 'TRAVEL HD') -%}
-                 TRAVEL HD
-                {%- elif is_state('input_select.canal', 'TRAVEL') -%}
-                 TRAVEL
-                    {%- elif is_state('input_select.canal', 'FASHION') -%}
-                 FASHION
-                    {%- elif is_state('input_select.canal', 'FASH') -%}
-                 FASH
-                {%- elif is_state('input_select.canal', 'TFN HD') -%}
-                   TFN HD
-                {%- elif is_state('input_select.canal', 'TFN') -%}
-                 TFN
-                {%- elif is_state('input_select.canal', '24 K') -%}
-               24 KITCHEN
-                {%- elif is_state('input_select.canal', 'BBC') -%}
-                 BBC
-                {%- elif is_state('input_select.canal', 'CANAL Q') -%}
-                 CANAL Q
-                {%- elif is_state('input_select.canal', 'INSIGHT') -%}
-                 INSIGHT
-                {%- elif is_state('input_select.canal', 'GINX') -%}
-                 GINX
-                {%- elif is_state('input_select.canal', 'QYOU HD') -%}
-                 QYOU HD
-                {%- elif is_state('input_select.canal', 'QYOU SD') -%}
-                 QYOU SD
-                {%- elif is_state('input_select.canal', 'GLOBO P') -%}
-                   GLOBO P
-                {%- elif is_state('input_select.canal', 'TV REC HD') -%}
-                 TV REC HD
-                {%- elif is_state('input_select.canal', 'TV REC') -%}
-                  TV REC
-                {%- elif is_state('input_select.canal', 'EURONEWS EN') -%}
-                 EURONEWS EN
-                {%- elif is_state('input_select.canal', 'EURONW') -%}
-                 EURONW
-                    {%- elif is_state('input_select.canal', 'BLOOMB') -%}
-                 BLOOMB
-                    {%- elif is_state('input_select.canal', 'SKY NEWS') -%}
-                 SKY NEWS
-                {%- elif is_state('input_select.canal', 'BBC HD') -%}
-                 1BBC HD
-                    {%- elif is_state('input_select.canal', 'CNBC E') -%}
-                CNBC E
-                {%- elif is_state('input_select.canal', 'ALJAZE') -%}
-                  ALJAZE
-                    {%- elif is_state('input_select.canal', 'TVE 24') -%}
-                 TVE 24
-                    {%- elif is_state('input_select.canal', 'DW') -%}
-                 DW
-                {%- elif is_state('input_select.canal', 'FRA24 E') -%}
-                 FRA24 E
-                {%- elif is_state('input_select.canal', 'FRA24 F') -%}
-                 FRA24 F
-                    {%- elif is_state('input_select.canal', 'REC NEWS') -%}
-                 REC NEWS
-                {%- elif is_state('input_select.canal', 'CMTV HD') -%}
-                 CMTV HD
-                {%- elif is_state('input_select.canal', '180') -%}
-                 180
-                {%- elif is_state('input_select.canal', 'ANGELUS') -%}
-                 ANGELUS
-                {%- elif is_state('input_select.canal', 'RTPMAD') -%}
-                 RTP MADEIRA
-                {%- elif is_state('input_select.canal', 'RTPACOR') -%}
-                 RTP ACORES
-                {%- elif is_state('input_select.canal', 'PORTOC') -%}
-                 PORTO CANAL
-                {%- elif is_state('input_select.canal', 'CNOVA') -%}
-                 C NOVA
-                {%- elif is_state('input_select.canal', 'AR TV') -%}
-                AR TV
-                {%- elif is_state('input_select.canal', 'LOCAL HD') -%}
-                 LOCAL HD
-                {%- elif is_state('input_select.canal', 'LOCALV') -%}
-                 LOCALV
-                    {%- elif is_state('input_select.canal', 'RTP AF') -%}
-                  RTP AFRICA
-                        {%- elif is_state('input_select.canal', 'TPA') -%}
-                 TPA
-                    {%- elif is_state('input_select.canal', 'TVC NEWS') -%}
-                TVC NEWS
-                    {%- elif is_state('input_select.canal', 'TVC INT') -%}
-                 TVC INTERNACIONAL
-                {%- elif is_state('input_select.canal', 'TVGALICIA') -%}
-                 TVGALICIA
-                    {%- elif is_state('input_select.canal', 'RTPHD') -%}
-                 RTPHD
-                {%- elif is_state('input_select.canal', 'TVEI') -%}
-                 TVEI
-                {%- elif is_state('input_select.canal', 'TV5MON') -%}
-                 TV5MON
-                    {%- elif is_state('input_select.canal', 'RAI1') -%}
-                 RAI UNO
-                {%- elif is_state('input_select.canal', 'PROTV') -%}
-                 PROTV
-                    {%- elif is_state('input_select.canal', 'RUSSIA') -%}
-                                RUSSIA
-                    {%- elif is_state('input_select.canal', 'RT DOC') -%}
-                RT DOC
-                        {%- elif is_state('input_select.canal', 'CUBAVI') -%}
-                CUBAVI
-                    {%- elif is_state('input_select.canal', 'NHK') -%}
-                 NHK
-                    {%- elif is_state('input_select.canal', 'KURIAKOS') -%}
-               KURIAKOS TV
-                    {%- elif is_state('input_select.canal', 'TOUROS') -%}
-                 TOUROS
-                    {%- elif is_state('input_select.canal', 'CAC & PESCA') -%}
-                 CAÇA E PESCA
-                    {%- elif is_state('input_select.canal', 'CACVISION') -%}
-                 CAÇA VISION
-                    {%- elif is_state('input_select.canal', 'MOTORS') -%}
-                 MOTORS
-                    {%- elif is_state('input_select.canal', 'FIGHTBOX') -%}
-                FIGHTBOX
-                    {%- elif is_state('input_select.canal', 'FASTNFUN') -%}
-                 FASTNFUN
-                    {%- elif is_state('input_select.canal', 'FIGHT NETWORK HD') -%}
-                 FIGHT NETWORK HD
-                {%- elif is_state('input_select.canal', 'FUELTV') -%}
-                  FUEL TV
-                    {%- elif is_state('input_select.canal', 'DOG TV') -%}
-                 DOG TV
-                    {%- elif is_state('input_select.canal', 'OH YES') -%}
-                 OH YES
-                {%- elif is_state('input_select.canal', 'PLAYBOY') -%}
-                 PLAYBOY
-                {%- elif is_state('input_select.canal', 'HUSTL') -%}
-                 HUSTEL
-                    {%- elif is_state('input_select.canal', 'HOT') -%}
-                 HOT
-                {%- elif is_state('input_select.canal', 'PENT') -%}
-               PENTHOUSE
-                {%- elif is_state('input_select.canal', 'HOT MAN') -%}
-                 HOTMAN
-                {%- elif is_state('input_select.canal', 'HOT TABOO') -%}
-                 HOT TABOO
-                {%- elif is_state('input_select.canal', 'START APPS') -%}
-                 START APPS
-                {%- elif is_state('input_select.canal', 'SIC HD') -%}
-                 SIC HD
-                {%- elif is_state('input_select.canal', 'SIC N HD') -%}
-                SIC NOTICIAS HD
-                 {%- elif is_state('input_select.canal', 'GLOBO HD') -%}
-                 GLOBO HD
-                {%- elif is_state('input_select.canal', 'SIC M HD') -%}
-                SIC MULHER HD
-                {%- elif is_state('input_select.canal', 'SIC C HD') -%}
-                  SIC C HD
-                 SIC C HD
-                {%- elif is_state('input_select.canal', 'SIC R HD') -%}
-                 SIC RADICAL HD
-                        {%- elif is_state('input_select.canal', 'YUBUY.LG') -%}
-                 YUBUY.LG'
-                        {%- elif is_state('input_select.canal', 'YUBUY.TV') -%}
-                 YUBUY.TV
-                        {%- elif is_state('input_select.canal', 'VIDEO') -%}
-                      VIDEO
-                        {%- elif is_state('input_select.canal', 'GRAV') -%}
-                    GRAVADOR
-                    {%- elif is_state('input_select.canal', 'STINGRAY KARAOKE') -%}
-                 STINGRAY KARAOKE
-                        {%- elif is_state('input_select.canal', 'KARAOKE') -%}
-                 KARAOKE
-                        {%- elif is_state('input_select.canal', 'ARCADE') -%}
-                 ARCADE
-                    {%- elif is_state('input_select.canal', '420') -%}
-                 420
-                        {%- elif is_state('input_select.canal', '+CANAIS') -%}
-                 +CANAIS
-                            {%- elif is_state('input_select.canal', 'STINGRAY') -%}
-                  STINGRAY
-                        {%- elif is_state('input_select.canal', 'RADIO') -%}
-                 RADIO
-                        {%- elif is_state('input_select.canal', 'VODAFONE') -%}
-                 VODAFONE
-                     {%- elif is_state('input_select.canal', 'COMERCIAL') -%}
-                 COMERCIAL
-                 {%- elif is_state('input_select.canal', 'M80') -%}
-                    M80
-                    {%- elif is_state('input_select.canal', 'RFM') -%}
-                 RFM
-                    {%- elif is_state('input_select.canal', 'RR') -%}
-                 RR
-                    {%- elif is_state('input_select.canal', 'SIM') -%}
-                 SIM
-                        {%- elif is_state('input_select.canal', 'ANTENA 1') -%}
-                 ANTENA 1
-                        {%- elif is_state('input_select.canal', 'ANTENA 2') -%}
-                 ANTENA 2
-                        {%- elif is_state('input_select.canal', 'ANTENA 3') -%}
-                ANTENA 3
-                    {%- elif is_state('input_select.canal', 'RECORD FM') -%}
-               RECORD FM
-                            {%- elif is_state('input_select.canal', 'RDP') -%}
-                 RDP
-                        {%- elif is_state('input_select.canal', 'TSF') -%}
-                  TSF
-                        {%- elif is_state('input_select.canal', 'CIDADE FM') -%}
-                 CIDADE FM
-                        {%- elif is_state('input_select.canal', 'MEGA FM') -%}
-                 MEGA FM
-                    {%- elif is_state('input_select.canal', 'RADIO REGIONAL') -%}
-                 RADIO REGIONAL
-             {%- elif is_state('input_select.canal', 'HIPER FM') -%}
-                 HIPER FM
-             {%- elif is_state('input_select.canal', 'GOLO FM') -%}
-              GOLO FM
-             {%- elif is_state('input_select.canal', 'SMOOTH FM') -%}
-                 SMOOTH FM
-            {%- elif is_state('input_select.canal', 'RADIO CIDADE') -%}
-               RADIO CIDADE
-             {%- elif is_state('input_select.canal', 'MUNDIAL') -%}
-                 MUNDIAL
-           {%- elif is_state('input_select.canal', 'RTP1 H') -%}
-                 RTP1 H
-          {%- elif is_state('input_select.canal', 'RTP2 H') -%}
-                 RTP2 H
-          {%- elif is_state('input_select.canal', 'SIC H') -%}
-                 SIC H
-           {%- elif is_state('input_select.canal', 'TVI H') -%}
-               TVI H
-          {%- endif -%}
-  - platform: time_date
-    display_options:
-      - 'time_date'
-  - platform: wunderground
-    lang: BR
-    api_key: !secret wuApiKey
-    monitored_conditions:
-      - weather_1d_metric
-      - weather_1n_metric
-      - weather_2d_metric
-      - weather_2n_metric
-      - weather_3d_metric
-      - weather_3n_metric
-      - weather_4d_metric
-      - weather_4n_metric
-
-  - platform: cpuspeed
-  - platform: speedtest
-    minute: 30
-    hour:
-      - 0
-      - 6
-      - 12
-      - 18
-    monitored_conditions:
-      - ping
-      - download
-      - upload
-  - platform: systemmonitor
-    resources:
-      - type: disk_use_percent
-        arg: /home
-      - type: memory_free
-      - type: last_boot
-
+  base_url: https://home.vferreira.pt:8123
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+ 
 # Text to speech
 tts:
-  - platform: google
+  - platform: google_translate
 
-# Cloud
-cloud:
+shopping_list:
 
-group: !include groups.yaml
-automation: !include automations.yaml
-script: !include scripts.yaml
-
-panel_iframe:
-  configurator:
-    title: Configurator
-    icon: mdi:wrench
-    url: http://hassio:3218
-
-notify:
-  - name: notify_pushBullet
-    platform: pushbullet
-    api_key: o.5uPUrE5NxJ1F764WUKK0pLhuo8ImYnAN
-
-media_player:
-  - platform: mediaroom
-    host: 192.168.1.65
-    name: "vodafone STB"
-    optimistic: True
-  - platform: samsungtv
-    host: 192.168.1.70
-  - platform: spotify
-    client_id: !secret spotifyClientId
-    client_secret: !secret spotifyClientSecret
-
+mqtt:
+  broker: !secret mqttsvr
+  username: !secret mqttusr
+  password: !secret mqttpss
+  keepalive: 60
+  
 weblink:
   entities:
     - name: Router
@@ -594,229 +38,75 @@ device_tracker:
     host: 192.168.1.1
     username: !secret routerVDFusr
     password: !secret routerVDFpss
+   
+switch:
+  - platform: mqtt
+    name: "Luz Aquario"
+    command_topic: "cmnd/SonoffluzAquario/power"
+    state_topic: "stat/SonoffluzAquario/POWER"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
     
-input_select:
-  canal:  
-    name: 'Escolhe o Canal'
-    options:
-      - RTP 1
-      - RTP 2
-      - SIC
-      - TVI
-      - SIC N
-      - RTP 3
-      - TVI 24
-      - CMTV
-      - SPTV+
-      - GLOBO
-      - SIC M
-      - PROMO
-      - PORTOC HD
-      - SIC CARAS
-      - SIC R
-      - CINEMA PORTUGUES
-      - RTPMEM
-      - 24K HD
-      - CANAL Q HD
-      - SPTV 1
-      - SPTV 3
-      - SPTV+ HD
-      - SPORT TV 4K
-      - BTV 1
-      - SCP TV
-      - SCP TV HD
-      - EURSP
-      - EURSP HD
-      - EURSP 2
-      - MOTORS HD
-      - PFC
-      - FUELTV HD
-      - DISNEY
-      - DISNEY J
-      - DMOD
-      - CN PT
-      - PANDA
-      - PANDA B
-      - BABY TV
-      - SIC K
-      - JIMJAM
-      - CINEKIDS
-      - MINIMOTION
-      - PLAYTIME
-      - TRAILERS
-      - TVC 1
-      - TVC S
-      - HOLLYW HD
-      - HOLLYW
-      - CINEMUNDO HD
-      - CINEMUNDO SD
-      - FOX M HD
-      - FOX M
-      - FOX HD 
-      - FOX
-      - AXN HD
-      - AXN
-      - FOXL HD
-      - FOXLIF
-      - FOX C HD
-      - FOXCRI
-      - FOX +
-      - FOX COMEDY HD
-      - FOX COMEDY SD 
-      - AXN W HD
-      - AXN W
-      - AXN B HD
-      - AXN BLK
-      - SYFY SD
-      - AMC HD
-      - AMC SD
-      - AMC HD
-      - NETFLIX
-      - OSCARES
-      - INDIEWORLD
-      - SUPER8
-      - PLAYMOTION
-      - CASA DO TERROR
-      - MTV P HD
-      - MTV PT
-      - VH1
-      - BRAVA TV
-      - DJAZZ
-      - MCM TOP HD
-      - MCMTOP
-      - CMUSIC
-      - AFRO M
-      - TRACE HD
-      - TRACE
-      - TRACE TOCA
-      - DISC HD
-      - DISCOV
-      - NGC HD
-      - NGC
-      - NGW HD
-      - NGCWIL
-      - HISTOR
-      - ODISSE
-      - ODISSEIA HD
-      - DOCUBOX HD
-      - AE
-      - TLC
-      - E! HD
-      - E!
-      - TRAVEL HD
-      - TRAVEL
-      - FASHION TV HD
-      - FASH TV
-      - TFN HD
-      - TFN
-      - 24 K
-      - BBC ENTERT
-      - CANAL Q
-      - INSIGHT TV HD
-      - GINX
-      - QYOU HD
-      - QYOU SD
-      - GLOBO P
-      - TV REC HD
-      - TV REC
-      - EURONEWS EN
-      - EURONW
-      - BLOOMB
-      - SKY NEWS
-      - BBC WD
-      - CNBC E
-      - ALJAZE
-      - TVE 24
-      - DW
-      - FRA24 E
-      - FRA24 F
-      - REC NEWS
-      - CMTV HD
-      - 180
-      - ANGELUS TV
-      - RTPMAD
-      - RTPACOR
-      - PORTOC
-      - CNOVA
-      - AR TV
-      - LOCAL HD
-      - LOCAL V
-      - RTP AF
-      - TPA
-      - TVC NEWS
-      - TVC INT
-      - TVGALICIA
-      - RTP HD
-      - TVEI
-      - TV5MON
-      - RAI1
-      - PROTV
-      - RUSSIA
-      - RT DOC
-      - CUBAVI
-      - NHK WORLD
-      - KURIAKOS TV
-      - TOUROS
-      - CAC & PESCA
-      - CACVISION
-      - MOTORS
-      - FIGHTBOX
-      - FASTNFUN BOX
-      - FIGHT NETWORK HD
-      - FUEL TV
-      - DOG TV
-      - OH YES
-      - PLAYBOY
-      - HUSTL
-      - HOT
-      - PENT
-      - HOT MAN
-      - HOT TABOO
-      - START APPS
-      - SIC HD
-      - SICN HD
-      - GLOBO HD
-      - SIC M HD
-      - SIC C HD
-      - SIC R HD
-      - YUBUY.LJ
-      - YUBUY.TV
-      - VIDEO
-      - GRAV
-      - STINGRAY KARAOKE
-      - KARAOKE
-      - ARCADE
-      - 420
-      - + CANAIS
-      - STINGRAY MUSIC
-      - RADIO
-      - VODAFONE FM
-      - COMERCIAL
-      - M80
-      - RFM
-      - RR
-      - SIM
-      - ANTENA 1
-      - ANTENA 2
-      - ANTENA 3
-      - RECORD FM
-      - RDP AFRICA
-      - TSF
-      - CIDADE FM
-      - MEGA FM
-      - RADIO REGIONAL
-      - HIPER FM
-      - GOLO FM
-      - SMOOTH FM
-      - RADIO SINES
-      - MUNDIAL FM
-      - RTP1 H
-      - RTP2 H
-      - SIC H
-      - TVI H
+cover:
+  - platform: mqtt
+    name: "Portao Garagem"
+    state_topic: "garageGate/state"
+    command_topic: "garageGate/cmd"
+    qos: 1
+    payload_open: "push"
+    payload_close: "push"
+    #payload_stop: "na"
+    state_open: "Open"
+    state_closed: "Closed"
+    optimistic: false
+    retain: false
 
-  zona_da_box:
-    name: 'Escolhe a Box:'
-    options:
-      - Sala
-    icon: mdi:speaker-wireless
+light:
+  - platform: mqtt
+    name: "Luz Garagem 1"
+    command_topic: "cmnd/bhonofreluzgaragem/POWER1"
+    state_topic: "stat/bhonofreluzgaragem/POWER1"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    optimistic: false
+    retain: true
+
+panel_custom:
+  - name: floorplan
+    sidebar_title: Floorplan
+    sidebar_icon: mdi:home
+    url_path: floorplan
+    config: !include floorplan.yaml
+
+panel_iframe:
+  tasmoadmin:
+    title: TasmoAdmin
+    icon: mdi:lightbulb-on
+    url: https://home.vferreira.pt:9541
+    
+speedtestdotnet:
+  scan_interval:
+    minutes: 30
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+    
+media_player: !include mediaplayer.yaml
+sensor: !include sensor.yaml
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+binary_sensor:
+  - platform: mqtt
+    state_topic: dummy/floorplan/sensor
+    name: Floorplan
+homeassistant:
+  customize:    
+    binary_sensor.floorplan:
+      custom_ui_state_card: state-card-floorplan
+      config: !include floorplan.yaml

@@ -1,0 +1,20 @@
+  - platform: cpuspeed
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /home
+      - type: memory_free
+      - type: last_boot
+      
+  - platform: mqtt
+    name: "Server Temp"
+    state_topic: "HTserver1/temp"
+    qos: 0
+    unit_of_measurement: "ºC"
+
+
+  - platform: mqtt
+    name: "Server Hum"
+    state_topic: "HTserver1/hum"
+    qos: 0
+    unit_of_measurement: "%"
