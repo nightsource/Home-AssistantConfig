@@ -7,14 +7,53 @@
       - type: last_boot
       
   - platform: mqtt
-    name: "Server Temp"
-    state_topic: "HTserver1/temp"
-    qos: 0
-    unit_of_measurement: "ºC"
-
+    name: "Aquecimento Piso Amperes"
+    state_topic: "tele/soaquecepiso/SENSOR"
+    value_template: "{{ value_json['ENERGY'].Current }}"
+    unit_of_measurement: 'A'
+  - platform: mqtt
+    name: "Aquecimento Piso Watts"
+    state_topic: "tele/soaquecepiso/SENSOR"
+    value_template: "{{ value_json['ENERGY'].Power }}"
+    unit_of_measurement: 'W'
+  - platform: mqtt
+    name: "Aquecimento Piso Volts"
+    state_topic: "tele/soaquecepiso/SENSOR"
+    value_template: "{{ value_json['ENERGY'].Voltage }}"
+    unit_of_measurement: 'V'
+  - platform: mqtt
+    name: "Aquecimento Piso Watts Ontem"
+    state_topic: "tele/soaquecepiso/SENSOR"
+    value_template: "{{ value_json['ENERGY'].Yesterday }}"
+    unit_of_measurement: 'W'    
+  - platform: mqtt
+    name: "Aquecimento Piso Watts Total"
+    state_topic: "tele/soaquecepiso/SENSOR"
+    value_template: "{{ value_json['ENERGY'].Total }}"
+    unit_of_measurement: 'W'
 
   - platform: mqtt
-    name: "Server Hum"
-    state_topic: "HTserver1/hum"
-    qos: 0
-    unit_of_measurement: "%"
+    name: "Aquecimento Agua Amperes"
+    state_topic: "tele/soaqueceagua/SENSOR"
+    value_template: "{{ value_json['ENERGY'].Current }}"
+    unit_of_measurement: 'A'
+  - platform: mqtt
+    name: "Aquecimento Agua Watts"
+    state_topic: "tele/soaqueceagua/SENSOR"
+    value_template: "{{ value_json['ENERGY'].Power }}"
+    unit_of_measurement: 'W'
+  - platform: mqtt
+    name: "Aquecimento Agua Volts"
+    state_topic: "tele/soaqueceagua/SENSOR"
+    value_template: "{{ value_json['ENERGY'].Voltage }}"
+    unit_of_measurement: 'V'
+  - platform: mqtt
+    name: "Aquecimento Agua Watts Ontem"
+    state_topic: "tele/soaqueceagua/SENSOR"
+    value_template: "{{ value_json['ENERGY'].Yesterday }}"
+    unit_of_measurement: 'W'    
+  - platform: mqtt
+    name: "Aquecimento Agua Watts Total"
+    state_topic: "tele/soaqueceagua/SENSOR"
+    value_template: "{{ value_json['ENERGY'].Total }}"
+    unit_of_measurement: 'W'
