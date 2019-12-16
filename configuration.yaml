@@ -24,6 +24,8 @@ weblink:
   entities:
     - name: Router
       url: http://192.168.1.1/
+    - name: Pi-hole
+      url: http://192.168.1.10/
     - name: Home Assistant
       url: https://home-assistant.io
 
@@ -72,11 +74,18 @@ cover:
     qos: 1
     payload_open: "push"
     payload_close: "push"
-    #payload_stop: "na"
-    state_open: "Open"
-    state_closed: "Closed"
+    payload_stop: "push" 
+    state_open: "ope"
+    state_closed: "close"
     optimistic: false
     retain: false
+
+homeassistant:
+  customize:
+    cover.portao_garagem:
+      friendly_name: Portao Garagem
+      device_class: garage
+      icon: mdi:garage
 
 # light:
   # - platform: mqtt

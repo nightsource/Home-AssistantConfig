@@ -1,25 +1,4 @@
-sensor.yweather_condition:
-  friendly_name: Tempo
-media_player.ue46eh6030_ue46eh6030:
-  friendly_name: Samsung Sala TV (UE46EH6030)
-  icon: mdi:television
-group.meteo:
-  homebridge_name: Meteo
-  unit_of_measurement: C
-device_tracker.oneplus_3:
-  friendly_name: Valter
-device_tracker.android6b624d787f17d7a5:
-  friendly_name: Rita
-media_player.samsung_tv_remote:
-  friendly_name: Tv Sala Samsung
-  script.reproducaobox:
-    friendly_name: Clica para veres o Canal
-    icon: mdi:play
-  sensor.boxsvodafone:
-    icon: mdi:eye
-  script.aumentarvolumeboxsala:
-    friendly_name: Clica para aumentares o volume
-    icon: mdi:volume-plus
-  script.diminuirvolumeboxsala:
-    friendly_name: Clica para diminuires o volume
-    icon: mdi:volume-minus
+cover.portao_garagem:
+  friendly_name: Portao garagem
+  device_class: garage
+  icon: mdi:garage
