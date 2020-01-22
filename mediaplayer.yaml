@@ -1,3 +1,9 @@
 #media player components
   - platform: mediaroom
 
+  - platform: philips_android_tv
+    name: TV
+    host: !secret philipstv_ip
+    mac: !secret philipstv_mac
+    username: !secret philipstv_user
+    password: !secret philipstv_pass

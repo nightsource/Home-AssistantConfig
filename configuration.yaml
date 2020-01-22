@@ -9,16 +9,61 @@ http:
   base_url: https://home.vferreira.pt8123
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
- 
-# Text to speech
+  
+google_assistant:
+  project_id: haintegration-655c6
+  exposed_domains:
+    - switch
+    - light
+    
 tts:
   - platform: google_translate
 
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_bot_token
+    allowed_chat_ids:
+      - 564913435
+      
+notify:
+  - name: Buttler
+    platform: telegram
+    chat_id: 564913435
+
+electricity:
+  home:
+    country: Portugal
+    operator: EDP
+    plan: Bi-horário - ciclo semanal
+utility_meter:
+  daily_energy:
+    source: sensor.energia_piso_hoje
+    cycle: daily
+    tariffs:
+      - Fora de Vazio
+      - Vazio
+  monthly_energy:
+    source: sensor.energia_piso_hoje
+    cycle: monthly
+    tariffs:
+      - Fora de Vazio
+      - Vazio
 mqtt:
   broker: !secret mqttsvr
   username: !secret mqttusr
   password: !secret mqttpss
   keepalive: 60
+  discovery: true
+  discovery_prefix: homeassistant
+  protocol: 3.1
+  birth_message:
+    topic: 'hass/status'
+    payload: 'online'
+    retain: true
+  will_message:
+    topic: 'hass/status'
+    payload: 'offline'
+    retain: true
   
 weblink:
   entities:
@@ -34,17 +79,9 @@ device_tracker:
     host: 192.168.1.1
     username: !secret routerVDFusr
     password: !secret routerVDFpss
-   
+  - platform: nmap_tracker
+    hosts: 192.168.1.0/24
 switch:
-  - platform: mqtt
-    name: "Luz Aquario"
-    command_topic: "cmnd/SonoffluzAquario/power"
-    state_topic: "stat/SonoffluzAquario/POWER"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-    retain: true
-    
   - platform: mqtt
     name: "Aquecimento piso"
     state_topic: "stat/soaquecepiso/POWER"
@@ -61,8 +98,39 @@ switch:
     qos: 1
     payload_on: "ON"
     payload_off: "OFF"
-    retain: true   
+    retain: true
     
+#  - platform: mqtt
+#    name: "Roomba"
+#    command_topic: "roomba/commands"
+#    payload_on: "start"
+#    payload_off: "stop"
+#  - platform: mqtt
+#    name: "Roomba return home"
+#    command_topic: "roomba/commands"
+#    payload_on: "home"
+#    payload_off: "home"
+#  - platform: mqtt
+#    name: "Roomba refresh status"
+#    command_topic: "roomba/commands"
+#    payload_on: "status"
+#    payload_off: "status"
+    
+light:
+  - platform: philips_ambilight
+    name: Ambilight+Hue
+    host: !secret philipstv_ip
+    username: !secret philipstv_user
+    password: !secret philipstv_pass
+  - platform: mqtt
+    name: "Luz Aquario"
+    command_topic: "cmnd/SonoffluzAquario/power"
+    state_topic: "stat/SonoffluzAquario/POWER"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+
 pi_hole:
   host: '192.168.1.10'
     
@@ -72,39 +140,35 @@ cover:
     state_topic: "garageGate/state"
     command_topic: "garageGate/cmd"
     qos: 1
-    payload_open: "push"
-    payload_close: "push"
-    payload_stop: "push" 
+    #payload_open: "push"
+    #payload_close: "push"
+    #payload_stop: "push" 
     state_open: "ope"
     state_closed: "close"
-    optimistic: false
-    retain: false
+    optimistic: true
+    retain: true
+    device_class: garage
 
-homeassistant:
-  customize:
-    cover.portao_garagem:
-      friendly_name: Portao Garagem
-      device_class: garage
-      icon: mdi:garage
-
-# light:
+# vacuum:
   # - platform: mqtt
-    # name: "Luz Garagem 1"
-    # command_topic: "cmnd/bhonofreluzgaragem/POWER1"
-    # state_topic: "stat/bhonofreluzgaragem/POWER1"
-    # qos: 1
-    # payload_on: "ON"
-    # payload_off: "OFF"
-    # optimistic: false
-    # retain: true
-
-# panel_custom:
-  # - name: floorplan
-    # sidebar_title: Floorplan
-    # sidebar_icon: mdi:home
-    # url_path: floorplan
-    # config: !include floorplan.yaml
-
+    # name: "Roomba Ambrosio"
+    # supported_features:
+      # - turn_on
+      # - turn_off
+      # - pause
+      # - stop
+      # - return_home
+      # - battery
+      # - status
+    # command_topic: "roomba/commands"
+    # payload_turn_on: "start"
+    # payload_turn_off: "stop"
+    # payload_return_to_base: "home"
+    # battery_level_topic: "roomba/battery"
+    # battery_level_template: "{{ value_json }}"
+    # charging_topic: "roomba/charging"
+    # charging_template: "{{ value_json }}"
+    
 panel_iframe:
   tasmoadmin:
     title: TasmoAdmin
@@ -124,7 +188,8 @@ sensor: !include sensor.yaml
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
-
+homeassistant:
+  customize: !include customize.yaml
 # binary_sensor:
   # - platform: mqtt
     # state_topic: dummy/floorplan/sensor

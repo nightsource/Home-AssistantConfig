@@ -22,10 +22,15 @@
     value_template: "{{ value_json['ENERGY'].Voltage }}"
     unit_of_measurement: 'V'
   - platform: mqtt
+    name: "Aquecimento Piso Watts Hoje"
+    state_topic: "tele/soaquecepiso/SENSOR"
+    value_template: "{{ value_json['ENERGY'].Today }}"
+    unit_of_measurement: 'W'  
+  - platform: mqtt
     name: "Aquecimento Piso Watts Ontem"
     state_topic: "tele/soaquecepiso/SENSOR"
     value_template: "{{ value_json['ENERGY'].Yesterday }}"
-    unit_of_measurement: 'W'    
+    unit_of_measurement: 'W'
   - platform: mqtt
     name: "Aquecimento Piso Watts Total"
     state_topic: "tele/soaquecepiso/SENSOR"
@@ -48,6 +53,11 @@
     value_template: "{{ value_json['ENERGY'].Voltage }}"
     unit_of_measurement: 'V'
   - platform: mqtt
+    name: "Aquecimento Agua Watts Hoje"
+    state_topic: "tele/soaqueceagua/SENSOR"
+    value_template: "{{ value_json['ENERGY'].Today }}"
+    unit_of_measurement: 'W' 
+  - platform: mqtt
     name: "Aquecimento Agua Watts Ontem"
     state_topic: "tele/soaqueceagua/SENSOR"
     value_template: "{{ value_json['ENERGY'].Yesterday }}"
@@ -57,3 +67,33 @@
     state_topic: "tele/soaqueceagua/SENSOR"
     value_template: "{{ value_json['ENERGY'].Total }}"
     unit_of_measurement: 'W'
+
+  - platform: integration
+    name: "Energia piso hoje"
+    source: sensor.aquecimento_piso_watts
+    unit_prefix: k
+    round: 2
+  - platform: template
+    sensors:
+      fatura_energia:
+        friendly_name: "Fatura Energia bi-horário"
+        value_template: >-
+          {{ ((float(states.sensor.monthly_energy_vazio.state) * 0.11  + float(states.sensor.monthly_energy_fora_de_vazio.state) * 0.187 + now().day * 0.3832 + 2.85 ) * 1.23 ) | round(2) }}
+        unit_of_measurement: "€"
+      fatura_energia_simples:
+        friendly_name: "Fatura Energia simples"
+        value_template: >-
+          {{ ((float(states.sensor.monthly_energy_vazio.state) * 0.1544  + float(states.sensor.monthly_energy_fora_de_vazio.state) * 0.1544 + now().day * 0.3832 + 2.85 ) * 1.23 ) | round(2) }}
+        unit_of_measurement: "€"
+    
+#Roomba Sensors
+#  - platform: mqtt
+#    name: "Roomba Status"
+#    state_topic: "roomba/status"
+#  - platform: mqtt
+#    name: "Roomba Battery"
+#    state_topic: "roomba/battery"
+#  - platform: mqtt
+#    name: "Roomba Charging"
+#    state_topic: "roomba/charging"
+#    value_template: "{% if value is equalto '0' %} Not charging {% elif value is equalto '1' %} Reconditioning Charging {% elif value is equalto '2' %} Full Charging {% elif value is equalto '3' %} Trickle Charging {% elif value is equalto '4' %} Waiting {% elif value is equalto '5' %} Charging Fault Condition {% else %} Not Recognised {% endif %}"

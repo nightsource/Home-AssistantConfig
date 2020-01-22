@@ -1,4 +1,13 @@
-cover.portao_garagem:
-  friendly_name: Portao garagem
-  device_class: garage
-  icon: mdi:garage
+#cover.portao_garagem:
+#  friendly_name: Portao garagem
+#  device_class: garage
+#  icon: mdi:garage
+switch.roomba:
+  icon: mdi:robot-vacuum
+sensor.roomba:
+  icon: mdi:robot-vacuum-variant
+sensor.roomba_battery:
+  icon: mdi:battery
+  unit_of_measurement: '%'
+sensor.roomba_status:
+  icon: mdi:format-list-bulleted
