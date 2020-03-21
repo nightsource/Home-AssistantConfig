@@ -1,51 +1,27 @@
-- alias: start Aquario Light
+- id: 06d639243ca842349c1ba2de4c260d16
+  alias: Aquario Light
   trigger:
+  - at: '17:00:00'
     platform: time
-    at: '17:00:00'
+  - at: '20:00:00'
+    platform: time
   action:
-    service: switch.turn_on
-    entity_id: switch.luz_aquario
-  id: 06d639243ca842349c1ba2de4c260d16
-- alias: stop Aquario Light
+  - entity_id: light.luz_aquario
+    service: light.toggle
+- id: 20d651025e9b420295ef627c2e1c16f7
+  alias: Aquecimento Agua
   trigger:
+  - at: 06:00:00
     platform: time
-    at: '20:00:00'
-  action:
-    service: switch.turn_off
-    entity_id: switch.luz_aquario
-  id: 22780886849b42a9b84e3f3eac4085e9
-- alias: start Aquecimento Agua manha
-  trigger:
+  - at: 08:00:00
     platform: time
-    at: 06:00:00
-  action:
-    service: switch.turn_on
-    entity_id: switch.aquecimento_agua
-  id: 20d651025e9b420295ef627c2e1c16f7
-- alias: stop Aquecimento Agua manha
-  trigger:
+  - at: '18:00:00'
     platform: time
-    at: 08:00:00
-  action:
-    service: switch.turn_off
-    entity_id: switch.aquecimento_agua
-  id: b62933b8c95f46bc86159dbc0cf2b60f
-- alias: start Aquecimento Agua tarde
-  trigger:
+  - at: '19:00:00'
     platform: time
-    at: '17:00:00'
   action:
-    service: switch.turn_on
-    entity_id: switch.aquecimento_agua
-  id: 8abf2054cc6240d3844d80dbe9ca3350
-- alias: stop Aquecimento Agua tarde
-  trigger:
-    platform: time
-    at: '20:00:00'
-  action:
-    service: switch.turn_off
-    entity_id: switch.aquecimento_agua
-  id: 456d6314d85b4761b071b40464078028
+  - entity_id: switch.aquecimento_agua
+    service: switch.toggle
 - id: '1578994958446'
   alias: Warn garage gate Open
   description: ''
@@ -87,4 +63,18 @@
   - data:
       message: O portao da garagem foi fechado
       title: '*Portao da garagem*'
+    service: notify.buttler
+- id: '1583841493592'
+  alias: Notify when hacs needs update
+  description: ''
+  trigger:
+  - entity_id: sensor.hacs
+    from: '0'
+    platform: state
+    to: '1'
+  condition: []
+  action:
+  - data:
+      message: System HACS needs updating
+      title: '*HACS*'
     service: notify.buttler

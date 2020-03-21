@@ -4,7 +4,9 @@ default_config:
 
 frontend:
   themes: !include themes.yaml
-# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  extra_html_url:
+    - /local/custom_ui/state-card-floorplan.html
+  
 http:
   base_url: https://home.vferreira.pt8123
   ssl_certificate: /ssl/fullchain.pem
@@ -48,6 +50,7 @@ utility_meter:
     tariffs:
       - Fora de Vazio
       - Vazio
+      
 mqtt:
   broker: !secret mqttsvr
   username: !secret mqttusr
@@ -64,15 +67,6 @@ mqtt:
     topic: 'hass/status'
     payload: 'offline'
     retain: true
-  
-weblink:
-  entities:
-    - name: Router
-      url: http://192.168.1.1/
-    - name: Pi-hole
-      url: http://192.168.1.10/
-    - name: Home Assistant
-      url: https://home-assistant.io
 
 device_tracker:
   - platform: huawei_router
@@ -100,22 +94,6 @@ switch:
     payload_off: "OFF"
     retain: true
     
-#  - platform: mqtt
-#    name: "Roomba"
-#    command_topic: "roomba/commands"
-#    payload_on: "start"
-#    payload_off: "stop"
-#  - platform: mqtt
-#    name: "Roomba return home"
-#    command_topic: "roomba/commands"
-#    payload_on: "home"
-#    payload_off: "home"
-#  - platform: mqtt
-#    name: "Roomba refresh status"
-#    command_topic: "roomba/commands"
-#    payload_on: "status"
-#    payload_off: "status"
-    
 light:
   - platform: philips_ambilight
     name: Ambilight+Hue
@@ -130,9 +108,6 @@ light:
     payload_on: "ON"
     payload_off: "OFF"
     retain: true
-
-pi_hole:
-  host: '192.168.1.10'
     
 cover:
   - platform: mqtt
@@ -148,26 +123,6 @@ cover:
     optimistic: true
     retain: true
     device_class: garage
-
-# vacuum:
-  # - platform: mqtt
-    # name: "Roomba Ambrosio"
-    # supported_features:
-      # - turn_on
-      # - turn_off
-      # - pause
-      # - stop
-      # - return_home
-      # - battery
-      # - status
-    # command_topic: "roomba/commands"
-    # payload_turn_on: "start"
-    # payload_turn_off: "stop"
-    # payload_return_to_base: "home"
-    # battery_level_topic: "roomba/battery"
-    # battery_level_template: "{{ value_json }}"
-    # charging_topic: "roomba/charging"
-    # charging_template: "{{ value_json }}"
     
 panel_iframe:
   tasmoadmin:
@@ -185,17 +140,8 @@ speedtestdotnet:
     
 media_player: !include mediaplayer.yaml
 sensor: !include sensor.yaml
-group: !include groups.yaml
+#group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 homeassistant:
   customize: !include customize.yaml
-# binary_sensor:
-  # - platform: mqtt
-    # state_topic: dummy/floorplan/sensor
-    # name: Floorplan
-# homeassistant:
-  # customize:    
-    # binary_sensor.floorplan:
-      # custom_ui_state_card: state-card-floorplan
-      # config: !include floorplan.yaml

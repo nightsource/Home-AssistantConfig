@@ -2,81 +2,48 @@
 ## Groups
 #################################################################
 #VISTAS
-  default_view:
-    view: yes
-    icon: mdi:home
-    entities:
-      - group.Sun
-      - group.previsao_tempo
-      - group.links
+#  default_view:
+#    view: yes
+#    icon: mdi:home
+#    entities:
+#      - group.Sun
+#      - group.previsao_tempo
+#
+#  divsala:
+#    name: Sala
+#    view: yes
+#    icon: mdi:sofa
+#    entities:
+#      - group.sala
 
-  divsala:
-    name: Sala
-    view: yes
-    icon: mdi:sofa
-    entities:
-      - group.sala
-
-  divescritorio:
-    name: Escritorio
-    view: yes
-    icon: mdi:deskphone
-    entities:
-      - group.escritorio
-
-  mediaCenter:
-    name: MediaCenter
-    view: yes
-    icon: mdi:play-protected-content
-    entities:
-      - group.media
-
-  links:
-    name: Links
-    control: hidden
-    entities:
-      - weblink.home_assistant
-      - weblink.router
-      
-  internet:
-    name: Internet
-    control: hidden
-    entities:
-      - sensor.speedtest_download
-      - sensor.speedtest_upload
-      - sensor.speedtest_ping
-  sala:
-    name: Sala
-    control: hidden
-    entities:
-      - media_player.mediaroom_2e2b8cad_08ba_4a61_aa9e_eed8246ce17f
-      - group.Aquario
-#      - media_player.mediaroom_230f1459606e4317a8a80130ce57c476
-#      - switch.maker_switch
-#      - sensor.salatemp
-#  escritorio:
+#  divescritorio:
 #    name: Escritorio
+#    view: yes
+#    icon: mdi:deskphone
 #    entities:
-#      - sensor.esctemp
-#      - sensor.eschum
-  media:
-    name: Media
-    entities:
-      - media_player.mediaroom_2e2b8cad_08ba_4a61_aa9e_eed8246ce17f
-#  temperatura:
-#    name: Temperatura
-#    entities:
-#      - sensor.esctemp
-#      - sensor.eschum
-#      - sensor.salatemp
+#      - group.escritorio
 
-  previsao_tempo:
-    name: Previsao
-    entities:
-      - weather.casa_valter_rita
-#      - sensor.pws_weather_2d_metric
-#      - sensor.pws_weather_3d_metric
-#      - sensor.pws_weather_4d_metric
+#  mediaCenter:
+#    name: MediaCenter
+#    view: yes
+#    icon: mdi:play-protected-content
+#    entities:
+#      - group.media
+      
+#  internet:
+#    name: Internet
+#    control: hidden
+#    entities:
+#      - sensor.speedtest_download
+#      - sensor.speedtest_upload
+#      - sensor.speedtest_ping
+#  sala:
+#    name: Sala
+#    control: hidden
+#    entities:
+#      - media_player.mediaroom_2e2b8cad_08ba_4a61_aa9e_eed8246ce17f
+#      - group.Aquario
+
   Sun:
     name: Sol
     control: hidden
@@ -104,7 +71,3 @@
       - sensor.memory_free
       - sensor.last_boot
       - group.internet
-  zones:
-    name: Zones
-    entities:
-      - binary_sensor.floorplan
