@@ -1,17 +1,8 @@
-- id: 06d639243ca842349c1ba2de4c260d16
-  alias: Aquario Light
-  trigger:
-  - at: '17:00:00'
-    platform: time
-  - at: '20:00:00'
-    platform: time
-  action:
-  - entity_id: light.luz_aquario
-    service: light.toggle
-- id: 20d651025e9b420295ef627c2e1c16f7
+- id: '1589065904158'
   alias: Aquecimento Agua
+  description: ''
   trigger:
-  - at: 06:00:00
+  - at: 07:00:00
     platform: time
   - at: 08:00:00
     platform: time
@@ -20,8 +11,24 @@
   - at: '19:00:00'
     platform: time
   action:
-  - entity_id: switch.aquecimento_agua
+  - data: {}
+    entity_id: switch.aquecimento_agua
     service: switch.toggle
+- id: '1589067784246'
+  alias: Aquario
+  description: ''
+  trigger:
+  - at: '17:00:00'
+    platform: time
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.luz_aquario
+    service: light.turn_on
+  - delay: 03:30:00
+  - data: {}
+    entity_id: light.luz_aquario
+    service: light.turn_off
 - id: '1578994958446'
   alias: Warn garage gate Open
   description: ''
@@ -36,20 +43,6 @@
       message: O portao da garagem foi aberto
       title: '*Portao da garagem*'
     service: notify.buttler
-- alias: tariff change
-  trigger:
-  - platform: state
-    entity_id: electricity.edp
-  action:
-  - service: utility_meter.select_tariff
-    entity_id: utility_meter.daily_energy
-    data_template:
-      tariff: '{{ trigger.to_state.state }}'
-  - service: utility_meter.select_tariff
-    entity_id: utility_meter.monthly_energy
-    data_template:
-      tariff: '{{ trigger.to_state.state }}'
-  id: 02a9eda74d13453b9f0923061c1e8a75
 - id: '1579542436595'
   alias: warn portao garagem closed
   description: ''
@@ -72,9 +65,116 @@
     from: '0'
     platform: state
     to: '1'
-  condition: []
   action:
   - data:
       message: System HACS needs updating
       title: '*HACS*'
     service: notify.buttler
+- id: '1590057590266'
+  alias: Sistema Rega Valvula 1 - 22h
+  description: ''
+  trigger:
+  - at: '22:00:00'
+    platform: time
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.valvula_jardim_1
+    service: switch.turn_on
+  - delay: 00:10:00
+  - data: {}
+    entity_id: switch.valvula_jardim_1
+    service: switch.turn_off
+  mode: single
+- id: sisRega2
+  alias: Sistema Rega Valvula 2 - 22h
+  description: ''
+  trigger:
+  - at: '22:10:00'
+    platform: time
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.valvula_jardim_2
+    service: switch.turn_on
+  - delay: 00:10:00
+  - data: {}
+    entity_id: switch.valvula_jardim_2
+    service: switch.turn_off
+  mode: single
+- id: sisRega3
+  alias: Sistema Rega Valvula 3 - 22h
+  description: ''
+  trigger:
+  - at: '22:20:00'
+    platform: time
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.valvula_jardim_3
+    service: switch.turn_on
+  - delay: 00:10:00
+  - data: {}
+    entity_id: switch.valvula_jardim_3
+    service: switch.turn_off
+  mode: single
+- id: '1590425966320'
+  alias: Watering Garden Manual cycle
+  description: ''
+  trigger: []
+  condition: []
+  action:
+  - data: {}
+    entity_id: automation.sistema_rega_valvula_1
+    service: automation.trigger
+  - delay: 00:10:00
+  - data: {}
+    entity_id: automation.sistema_rega_valvula_2
+    service: automation.trigger
+  - delay: 00:10:00
+  - data: {}
+    entity_id: automation.sistema_rega_valvula_3
+    service: automation.trigger
+- alias: Smart Irrigation
+  description: Start Smart Irrigation at 06:00 and run it only if the adjusted_run_time
+    is >0 and run it for precisely that many seconds
+  trigger:
+  - event_data: {}
+    event_type: smart_irrigation_start
+    platform: event
+  condition:
+  - above: '0'
+    condition: numeric_state
+    entity_id: sensor.smart_irrigation_daily_adjusted_run_time
+  action:
+  - data: {}
+    entity_id: switch.valvula_jardim_1
+    service: switch.turn_on
+  - delay:
+      seconds: '{{states("sensor.smart_irrigation_daily_adjusted_run_time")}}'
+  - data: {}
+    entity_id: switch.valvula_jardim_1
+    service: switch.turn_off
+  - data: {}
+    service: smart_irrigation.reset_bucket
+  id: 7b2df872a37148adaa4f33c3dd91905b
+- id: '1598985491596'
+  alias: WC Red luz demasiado tempo ligada +10'
+  description: Avisa se luz Wc Vermelha acesa por mais de 10 minutos
+  trigger:
+  - entity_id: switch.luz_wc_vermelha
+    for: 00:10:00
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      message: Wc Vermelha luz acesa
+      title: '*Luz WC Vermelha*'
+    service: notify.buttler
+  - data:
+      message: Wc Vermelha luz acesa
+      title: '*Luz WC Vermelha*'
+    service: notify.mobile_app_redmi_k20
+  mode: single

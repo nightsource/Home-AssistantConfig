@@ -6,6 +6,21 @@
       - type: memory_free
       - type: last_boot
   - platform: mqtt
+    name: "sensor aquario"
+    state_topic: "tele/SonoffluzAquario/SENSOR"
+    value_template: "{{ value_json['DS18B20'].Temperature }}"
+    unit_of_measurement: 'C'
+  - platform: mqtt
+    name: "Temperatura Escritorio"
+    state_topic: "tele/sonoffEscritorio/SENSOR"
+    value_template: "{{ value_json['DHT11'].Temperature }}"
+    unit_of_measurement: 'C'
+  - platform: mqtt
+    name: "Humidade Escritorio"
+    state_topic: "tele/sonoffEscritorio/SENSOR"
+    value_template: "{{ value_json['DHT11'].Humidity }}"
+    unit_of_measurement: '%'
+  - platform: mqtt
     name: "Aquecimento Piso Amperes"
     state_topic: "tele/soaquecepiso/SENSOR"
     value_template: "{{ value_json['ENERGY'].Current }}"

@@ -44,17 +44,17 @@
 #      - media_player.mediaroom_2e2b8cad_08ba_4a61_aa9e_eed8246ce17f
 #      - group.Aquario
 
-  Sun:
-    name: Sol
-    control: hidden
-    entities:
-      - sun.sun
+#  Sun:
+#    name: Sol
+#    control: hidden
+#    entities:
+#      - sun.sun
 
-  Aquario:
-    name: aquario
-    control: hidden
-    entities:
-      - switch.luz_aquario
+#  Aquario:
+#    name: aquario
+#    control: hidden
+#    entities:
+#      - switch.luz_aquario
 # dispositivos:
 #    name: Dispositivos
 #    entities:
@@ -63,8 +63,6 @@
 
   sisHealth:
     name: Sistema
-    control: hidden
-    view: yes
     entities:
       - sensor.cpu_speed
       - sensor.disk_use_percent_home

@@ -1,0 +1,13 @@
+  - platform: mqtt
+    name: "Portao Garagem"
+    state_topic: "garageGate/state"
+    command_topic: "garageGate/cmd"
+    qos: 1
+    #payload_open: "push"
+    #payload_close: "push"
+    #payload_stop: "push" 
+    state_open: "ope"
+    state_closed: "close"
+    optimistic: true
+    retain: true
+    device_class: garage

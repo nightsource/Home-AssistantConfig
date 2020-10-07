@@ -1,0 +1,6 @@
+'1593471301993':
+  alias: Acionar Regua
+  sequence:
+  - data: {}
+    entity_id: automation.watering_garden_manual_cycle
+    service: automation.trigger

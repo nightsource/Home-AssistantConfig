@@ -1,0 +1,86 @@
+  - platform: mqtt
+    name: "Luz Escritorio"
+    state_topic: "stat/tasmota_BC6522/POWER"
+    command_topic: "cmnd/tasmota_BC6522/POWER"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+
+  - platform: mqtt
+    name: "Luz Hall Quarto Principal"
+    state_topic: "stat/tasmota_BC6546/POWER"
+    command_topic: "cmnd/tasmota_BC6546/POWER"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+
+  - platform: mqtt
+    name: "Luz WC Vermelha"
+    state_topic: "stat/Luzwcred/POWER"
+    command_topic: "cmnd/Luzwcred/POWER"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+
+  - platform: mqtt
+    name: "Aquecimento piso"
+    state_topic: "stat/soaquecepiso/POWER"
+    command_topic: "cmnd/soaquecepiso/power"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+    
+  - platform: mqtt
+    name: "Tomada escritorio"
+    state_topic: "stat/sonoffEscritorio/POWER"
+    command_topic: "cmnd/sonoffEscritorio/power"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+    
+  - platform: mqtt
+    name: "Aquecimento agua"
+    state_topic: "stat/soaqueceagua/POWER"
+    command_topic: "cmnd/soaqueceagua/power"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+
+  - platform: mqtt
+    name: "Valvula jardim 1"
+    state_topic: "stat/tasmota_8CA4C5/POWER1"
+    command_topic: "cmnd/tasmota_8CA4C5/POWER1"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: true
+
+  - platform: mqtt
+    name: "Valvula jardim 2"
+    state_topic: "stat/tasmota_8CA4C5/POWER2"
+    command_topic: "cmnd/tasmota_8CA4C5/POWER2"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: true
+
+  - platform: mqtt
+    name: "Valvula jardim 3"
+    state_topic: "stat/tasmota_8CA4C5/POWER3"
+    command_topic: "cmnd/tasmota_8CA4C5/POWER3"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: true

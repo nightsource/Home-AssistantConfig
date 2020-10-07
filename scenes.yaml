@@ -1,0 +1,35 @@
+- id: '1590326767440'
+  name: Nova Cena
+  entities:
+    cover.shelly_shsw_25_10a2cf:
+      current_position: 50
+      friendly_name: Shelly 2.5 (Roller) - 10A2CF
+      ip_address: 192.168.1.158
+      shelly_id: 10A2CF
+      shelly_type: Shelly 2.5 (Roller)
+      state: open
+      supported_features: 15
+    cover.shelly_shsw_25_68c63af95aae:
+      current_position: 100
+      friendly_name: Shelly 2.5 (Roller) - 68C63AF95AAE
+      ip_address: 192.168.1.127
+      shelly_id: 68C63AF95AAE
+      shelly_type: Shelly 2.5 (Roller)
+      state: open
+      supported_features: 15
+    cover.shelly_shsw_25_68c63af95f99:
+      current_position: 30
+      friendly_name: Shelly 2.5 (Roller) - 68C63AF95F99
+      ip_address: 192.168.1.124
+      shelly_id: 68C63AF95F99
+      shelly_type: Shelly 2.5 (Roller)
+      state: open
+      supported_features: 15
+    cover.shelly_shsw_25_8caab50583b0:
+      current_position: 50
+      friendly_name: Shelly 2.5 (Roller) - 8CAAB50583B0
+      ip_address: 192.168.1.106
+      shelly_id: 8CAAB50583B0
+      shelly_type: Shelly 2.5 (Roller)
+      state: open
+      supported_features: 15

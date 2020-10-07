@@ -1,0 +1,56 @@
+  - platform: mqtt
+    name: "Luz Aquario"
+    command_topic: "cmnd/SonoffluzAquario/power"
+    state_topic: "stat/SonoffluzAquario/POWER"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+  - platform: mqtt
+    name: "Luz Jardim Frente Lado"
+    command_topic: "mqttServer/14031717/light/14031717luzfrentelado/set"
+    state_topic: "mqttServer/14031717/light/14031717luzfrentelado/state"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+  - platform: mqtt
+    name: "Luz Jardim Frente"
+    command_topic: "mqttServer/14031717/light/14031717luzjardimfrente/set"
+    state_topic: "mqttServer/14031717/light/14031717luzjardimfrente/state"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+  - platform: mqtt
+    name: "Luz Garagem 1"
+    command_topic: "mqttServer/14029039/light/14029039luzgaragem1/set"
+    state_topic: "mqttServer/14029039/light/14029039luzgaragem1/set"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+  - platform: mqtt
+    name: "Luz Garagem 2"
+    command_topic: "mqttServer/14029039/light/14029039luzgaragem2/set"
+    state_topic: "mqttServer/14029039/light/14029039luzgaragem2/state"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+  - platform: mqtt
+    name: "Luz Hall Tras"
+    command_topic: "mqttServer/14049798/light/14049798luzhalltras/set"
+    state_topic: "mqttServer/14049798/light/14049798luzhalltras/state"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+  - platform: mqtt
+    name: "Luz Muro Tras"
+    command_topic: "mqttServer/14049798/light/14049798luzmurostras/set"
+    state_topic: "mqttServer/14049798/light/14049798luzmurostras/state"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
